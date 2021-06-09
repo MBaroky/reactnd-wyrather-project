@@ -6,20 +6,21 @@ import { handleGetUsers } from "../actions/users";
 import { setAuthed } from "../actions/authedUser";
 
 function App(props) {
+  const { authed, dispatch } = props;
   useEffect(() => {
-    props.dispatch(setAuthed("johndoe"));
-    props.dispatch(handleGetQuestion());
-    props.dispatch(handleGetUsers());
-  }, []);
+    dispatch(setAuthed("johndoe"));
+    dispatch(handleGetQuestion());
+    dispatch(handleGetUsers());
+  }, [dispatch]);
   return (
     <div className='app'>
-      {console.log(props.state.questions)}
       <Nav />
+      <p>{authed}</p>
     </div>
   );
 }
 const mapStateToProps = state => ({
-  state,
+  authed: state.authedUser,
 });
 
 export default connect(mapStateToProps)(App);
