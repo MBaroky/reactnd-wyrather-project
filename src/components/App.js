@@ -1,22 +1,21 @@
-import { Nav } from "./Nav";
 import { connect } from "react-redux";
-import { useEffect } from "react";
-import { handleGetQuestion } from "../actions/questions";
-import { handleGetUsers } from "../actions/users";
-import { setAuthed } from "../actions/authedUser";
+import { Route, Switch, useLocation } from "react-router-dom";
+import LoginPage from "./LoginPage";
+import Dashboard from "./Dashboard";
 
-function App(props) {
-  const { authed, dispatch } = props;
-  useEffect(() => {
-    dispatch(setAuthed("johndoe"));
-    dispatch(handleGetQuestion());
-    dispatch(handleGetUsers());
-  }, [dispatch]);
+function App({ authed }) {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
-    <div className='app'>
-      <Nav />
-      <p>{authed}</p>
-    </div>
+    <Switch>
+      {
+        !authed && <LoginPage /> // if not signed in
+      }
+      <Route exact path='/'>
+        <Dashboard />
+      </Route>
+      <Route path='*'>404 page</Route>
+    </Switch>
   );
 }
 const mapStateToProps = state => ({
