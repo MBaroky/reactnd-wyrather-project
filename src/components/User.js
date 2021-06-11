@@ -11,11 +11,13 @@ const User = ({ userId, user, dispatch, authedUser }) => {
     dispatch(setAuthed(null));
   };
   return (
-    <div
-      className={`card shadow ${authedUser && "text-white bg-dark"}`}
+    <button
+      className={`btn btn-outline-primary w-100 card shadow ${
+        authedUser && "text-white bg-dark"
+      }`}
       style={{ cursor: "pointer" }}
       onClick={handleClick}>
-      <div className={`card-body ${authedUser && "py-sm-0"}`}>
+      <div className={`card-body w-100 ${authedUser && "py-sm-0"}`}>
         <div className='row align-items-center'>
           <div className='col-2'>
             <div
@@ -28,7 +30,7 @@ const User = ({ userId, user, dispatch, authedUser }) => {
                 backgroundSize: "cover",
               }}></div>
           </div>
-          <div className='col text-lg-left text center'>
+          <div className='col text-lg-start text center'>
             <h3
               className={`d-inline font-weight-normal ${
                 authedUser === userId && "fs-5"
@@ -81,7 +83,7 @@ const User = ({ userId, user, dispatch, authedUser }) => {
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

@@ -9,7 +9,6 @@ const LoginPage = ({ usersIds, dispatch }) => {
   useEffect(() => {
     dispatch(handleGetUsers());
   }, [dispatch]);
-  console.log(usersIds);
   return (
     <div>
       <Nav />
@@ -28,7 +27,6 @@ const LoginPage = ({ usersIds, dispatch }) => {
 };
 
 const mapStateToProps = ({ users }, { pathname }) => {
-  console.log(users);
   return {
     usersIds: Object.keys(users),
     pathname,

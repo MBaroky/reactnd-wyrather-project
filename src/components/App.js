@@ -1,11 +1,9 @@
 import { connect } from "react-redux";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import Dashboard from "./Dashboard";
 
 function App({ authed }) {
-  const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <Switch>
       {
