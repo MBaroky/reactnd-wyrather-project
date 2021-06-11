@@ -15,6 +15,7 @@ export const Nav = ({ pages, authedUser }) => {
               const { title, path } = page;
               return (
                 <NavLink
+                  exact
                   to={path}
                   key={title}
                   className='btn nav-link d-inline'

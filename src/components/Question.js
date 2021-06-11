@@ -1,20 +1,28 @@
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { handleSaveQuestionAnswer } from "../actions/shared";
+import ProgressBar from "./ProgressBar";
 
 const Question = ({
   id,
   question,
-  filter,
   authedUser,
   authorName,
   authorImg,
   dispatch,
 }) => {
-  let history = useHistory();
   const { timestamp, optionOne, optionTwo } = question;
+  const params = useParams();
+  const isOnPage = params.id === id;
+  const answered =
+    optionOne.votes.includes(authedUser) ||
+    optionTwo.votes.includes(authedUser)
+      ? true
+      : false;
+  const allVotes = optionOne.votes.length + optionTwo.votes.length;
+  let history = useHistory();
   const handleClick = () => {
-    history.push(`/question/:${id}`);
+    history.push(`/question/${id}`);
   };
   const dateFormatter = stamp => {
     const date = new Date(stamp);
@@ -26,13 +34,11 @@ const Question = ({
   };
 
   const handleChooseOption = (answer, e) => {
-    // e.preventDefault();
-    // const answer = e.target.name;
-    filter !== "answered"
-      ? dispatch(
+    answered
+      ? e.preventDefault()
+      : dispatch(
           handleSaveQuestionAnswer({ authedUser, qid: id, answer })
-        )
-      : e.preventDefault();
+        );
   };
   return (
     <div
@@ -48,7 +54,17 @@ const Question = ({
                 ? "bg-danger"
                 : "bg-secondary"
             }`}>
-            <div className='card-body'>{optionOne.text}</div>
+            <div className='card-body w-100 text-start'>
+              {optionOne.text}
+              {answered && isOnPage && (
+                <span className='badge rounded-circle bg-dark pill-badge float-end'>
+                  {optionOne.votes.length}
+                </span>
+              )}
+            </div>
+            {answered && isOnPage && (
+              <ProgressBar allVotes={allVotes} option={optionOne} />
+            )}
           </button>
         </div>
         <div className={`col`}>
@@ -60,7 +76,18 @@ const Question = ({
                 ? "bg-primary"
                 : "bg-secondary"
             }`}>
-            <div className='card-body'>{optionTwo.text}</div>
+            <span className='card-body w-100 text-start'>
+              {optionTwo.text}
+              {answered && isOnPage && (
+                <span className='badge rounded-circle bg-dark pill-badge float-end'>
+                  {optionTwo.votes.length}
+                </span>
+              )}
+            </span>
+
+            {answered && isOnPage && (
+              <ProgressBar allVotes={allVotes} option={optionTwo} />
+            )}
           </button>
         </div>
       </div>
@@ -95,12 +122,12 @@ const Question = ({
 
 const mapStateToProps = (
   { questions, authedUser, users },
-  { id, filter }
+  { id }
 ) => {
   const question = questions[id];
   const authorName = users[question.author].name;
   const authorImg = users[question.author].avatarURL;
-  return { id, question, filter, authedUser, authorName, authorImg };
+  return { id, question, authedUser, authorName, authorImg };
 };
 
 export default connect(mapStateToProps)(Question);

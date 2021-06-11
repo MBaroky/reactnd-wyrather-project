@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import Nav from "./Nav";
 
 import Question from "./Question";
-
-// Nav links after login
-const pages = [
-  { title: "HOME", path: "/" },
-  { title: "ADD QUESTION", path: "/add" },
-  { title: "LEADERBOARD", path: "/leaderboard" },
-];
 
 export const Dashboard = ({ authedUser, qIds, answered }) => {
   const [filter, setfilter] = useState("unanswered");
@@ -22,7 +14,6 @@ export const Dashboard = ({ authedUser, qIds, answered }) => {
   }, [answered, qIds]);
   return (
     <div>
-      <Nav pages={pages} />
       <div className='container'>
         <div className='border p-4 bg-light mt-2'>
           <h1 className='display-4'>Dashboard</h1>
@@ -62,7 +53,7 @@ export const Dashboard = ({ authedUser, qIds, answered }) => {
             )
             .map(qId => (
               <li key={qId}>
-                <Question id={qId} filter={filter} />
+                <Question id={qId} />
               </li>
             ))}
         </ul>
