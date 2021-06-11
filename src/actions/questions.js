@@ -9,7 +9,7 @@ function getQuestions(payload) {
   };
 }
 
-export function handleGetQuestion() {
+export function handleGetQuestions() {
   return dispatch => {
     _getQuestions().then(res => dispatch(getQuestions(res)));
   };

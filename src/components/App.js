@@ -1,9 +1,17 @@
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import Dashboard from "./Dashboard";
 
-function App({ authed }) {
+import { handleGetQuestions } from "../actions/questions";
+import { handleGetUsers } from "../actions/users";
+
+function App({ authed, dispatch }) {
+  useEffect(() => {
+    dispatch(handleGetUsers());
+    dispatch(handleGetQuestions());
+  }, [dispatch]);
   return (
     <Switch>
       {
@@ -12,6 +20,9 @@ function App({ authed }) {
       <Route exact path='/'>
         <Dashboard />
       </Route>
+      <Route path='/question/:id'> Question Page</Route>
+      <Route path='/add'>new Question</Route>
+      <Route path='/leaderboard'>leaderboard</Route>
       <Route path='*'>404 page</Route>
     </Switch>
   );

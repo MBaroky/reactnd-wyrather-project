@@ -25,7 +25,7 @@ export const Nav = ({ pages, authedUser }) => {
             })}
         </div>
         <div style={{ minWidth: "420px" }}>
-          {authedUser && <User userId={authedUser} />}
+          {authedUser && <User navUser={true} userId={authedUser} />}
         </div>
       </div>
     </nav>

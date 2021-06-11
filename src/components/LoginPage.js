@@ -1,23 +1,15 @@
-import React, { useEffect } from "react";
 import Nav from "./Nav";
 import User from "./User";
 import { connect } from "react-redux";
 
-import { handleGetUsers } from "../actions/users";
-
-const LoginPage = ({ usersIds, dispatch }) => {
-  useEffect(() => {
-    dispatch(handleGetUsers());
-  }, [dispatch]);
+const LoginPage = ({ usersIds }) => {
   return (
     <div>
       <Nav />
-      <ul className='list-group list-group-flush'>
+      <ul className='list-unstyled'>
         {usersIds.length !== 0 &&
           usersIds.map(userId => (
-            <li
-              className='list-group-item border-0 py-4'
-              key={userId}>
+            <li className='px-4 py-2' key={userId}>
               <User userId={userId} />
             </li>
           ))}

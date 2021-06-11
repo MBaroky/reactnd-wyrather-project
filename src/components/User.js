@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { setAuthed } from "../actions/authedUser";
 
-const User = ({ userId, user, dispatch, authedUser }) => {
+const User = ({ userId, user, dispatch, authedUser, navUser }) => {
   const { name, avatarURL, answers, questions } = user;
   const handleClick = () => {
     authedUser === null && dispatch(setAuthed(userId));
@@ -11,13 +11,13 @@ const User = ({ userId, user, dispatch, authedUser }) => {
     dispatch(setAuthed(null));
   };
   return (
-    <button
+    <div
       className={`btn btn-outline-primary w-100 card shadow ${
-        authedUser && "text-white bg-dark"
+        navUser && "text-white bg-dark"
       }`}
       style={{ cursor: "pointer" }}
       onClick={handleClick}>
-      <div className={`card-body w-100 ${authedUser && "py-sm-0"}`}>
+      <div className={`card-body w-100 ${navUser && "py-sm-0"}`}>
         <div className='row align-items-center'>
           <div className='col-2'>
             <div
@@ -33,11 +33,11 @@ const User = ({ userId, user, dispatch, authedUser }) => {
           <div className='col text-lg-start text center'>
             <h3
               className={`d-inline font-weight-normal ${
-                authedUser === userId && "fs-5"
+                navUser && "fs-5"
               }`}>
               {name}
             </h3>
-            {authedUser === userId && (
+            {authedUser === userId && navUser && (
               <h6>
                 <button
                   onClick={handleSignout}
@@ -49,14 +49,14 @@ const User = ({ userId, user, dispatch, authedUser }) => {
           </div>
           <div className='col-5'>
             <div className='row'>
-              <div className={authedUser ? "col" : "col-6"}>
+              <div className={navUser ? "col" : "col-6"}>
                 <button
                   className={`btn w-100 ${
-                    authedUser
+                    navUser
                       ? "btn-dark text-end py-1"
                       : "btn-outline-dark text-center"
                   }`}>
-                  <h4 className={authedUser && "d-inline px-2 fs-6"}>
+                  <h4 className={navUser && "d-inline px-2 fs-6"}>
                     {questions.length}
                   </h4>
                   <span className='badge rounded-pill bg-secondary font-weight-light'>
@@ -64,14 +64,14 @@ const User = ({ userId, user, dispatch, authedUser }) => {
                   </span>
                 </button>
               </div>
-              <div className={authedUser ? "col" : "col-6"}>
+              <div className={navUser ? "col" : "col-6"}>
                 <button
                   className={`btn w-100 ${
-                    authedUser
+                    navUser
                       ? "btn-dark text-end py-1"
                       : "btn-outline-dark text-center"
                   }`}>
-                  <h4 className={authedUser && "d-inline px-2 fs-6"}>
+                  <h4 className={navUser && "d-inline px-2 fs-6"}>
                     {Object.keys(answers).length}
                   </h4>
                   <span className='badge rounded-pill bg-secondary font-weight-light'>
@@ -83,14 +83,18 @@ const User = ({ userId, user, dispatch, authedUser }) => {
           </div>
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 
-const mapStateToProps = ({ users, authedUser }, { userId }) => ({
+const mapStateToProps = (
+  { users, authedUser },
+  { userId, navUser }
+) => ({
   user: users[userId],
   userId,
   authedUser,
+  navUser,
 });
 
 export default connect(mapStateToProps)(User);
