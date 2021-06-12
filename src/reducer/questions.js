@@ -1,4 +1,4 @@
-import { GET_QUESTIONS } from "../actions/questions";
+import { ADD_QUESTION, GET_QUESTIONS } from "../actions/questions";
 import { SAVE_QUESTION_ANSWER } from "../actions/shared";
 
 export function questions(state = {}, action) {
@@ -20,6 +20,13 @@ export function questions(state = {}, action) {
             ...state[qid][answer], // spread the answer
             votes: state[qid][answer].votes.concat([authedUser]), // add authedId to the votes
           },
+        },
+      };
+    case ADD_QUESTION:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...action.payload,
         },
       };
     default:

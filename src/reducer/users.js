@@ -1,3 +1,4 @@
+import { ADD_QUESTION } from "../actions/questions";
 import { SAVE_QUESTION_ANSWER } from "../actions/shared";
 import { GET_USERS } from "../actions/users";
 
@@ -18,6 +19,15 @@ export function users(state = {}, action) {
             ...state[authedUser].answers,
             [qid]: answer,
           },
+        },
+      };
+    case ADD_QUESTION:
+      const { author, id } = action.payload;
+      return {
+        ...state,
+        [author]: {
+          ...state[author],
+          questions: [...state[author].questions, id],
         },
       };
 

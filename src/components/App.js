@@ -10,6 +10,7 @@ import Leaderboard from "./Leaderboard";
 import Nav from "./Nav";
 
 import { handleInitialData } from "../actions/shared";
+import NewQuestion from "./NewQuestion";
 // Nav links after login
 const pages = [
   { title: "HOME", path: "/" },
@@ -44,7 +45,9 @@ function App({ authed, loading, dispatch }) {
             <Route path='/question/:id'>
               <QuestionPage />
             </Route>
-            <Route path='/add'>new Question</Route>
+            <Route path='/add'>
+              <NewQuestion />
+            </Route>
             <Route path='/leaderboard'>
               <Leaderboard />
             </Route>
