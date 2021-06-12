@@ -6,14 +6,16 @@ const LoginPage = ({ usersIds }) => {
   return (
     <div>
       <Nav />
-      <ul className='list-unstyled'>
-        {usersIds.length !== 0 &&
-          usersIds.map(userId => (
-            <li className='px-4 py-2' key={userId}>
-              <User userId={userId} />
-            </li>
-          ))}
-      </ul>
+      <div className='container'>
+        <ul className='list-unstyled'>
+          {usersIds.length !== 0 &&
+            usersIds.map(userId => (
+              <li className='px-4 py-2' key={userId}>
+                <User userId={userId} />
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 };
