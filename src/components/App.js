@@ -7,6 +7,7 @@ import LoginPage from "./LoginPage";
 import Dashboard from "./Dashboard";
 import QuestionPage from "./QuestionPage";
 import Leaderboard from "./Leaderboard";
+import NotFoundPage from "./NotFoundPage";
 import Nav from "./Nav";
 
 import { handleInitialData } from "../actions/shared";
@@ -51,7 +52,9 @@ function App({ authed, loading, dispatch }) {
             <Route path='/leaderboard'>
               <Leaderboard />
             </Route>
-            <Route path='*'>404 page</Route>
+            <Route path='*'>
+              <NotFoundPage />
+            </Route>
           </Switch>
         </Fragment>
       )}

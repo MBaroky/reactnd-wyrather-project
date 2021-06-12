@@ -1,9 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import Question from "./Question";
+import NotFoundPage from "./NotFoundPage";
 
-export default function QuestionPage() {
+const QuestionPage = ({ questions }) => {
   const { id } = useParams();
+  if (!questions[id]) {
+    return <NotFoundPage />;
+  }
   return (
     <div className='container'>
       <div className='border p-4 bg-light my-2'>
@@ -12,4 +17,10 @@ export default function QuestionPage() {
       <Question id={id} />
     </div>
   );
-}
+};
+
+const mapStateToProps = ({ questions }) => {
+  return { questions };
+};
+
+export default connect(mapStateToProps)(QuestionPage);

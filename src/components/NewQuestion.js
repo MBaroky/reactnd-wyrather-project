@@ -23,7 +23,7 @@ export const NewQuestion = ({ dispatch }) => {
   return (
     <div className='container'>
       <div className='border p-4 bg-light my-2'>
-        <h1 className='display-4 text-center'>Add New Question</h1>
+        <h1 className='display-4 text-center'>Would You Rather..?</h1>
       </div>
       <form className='row g-2' onSubmit={handleSubmit}>
         <div className='col-md'>

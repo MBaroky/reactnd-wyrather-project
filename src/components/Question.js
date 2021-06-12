@@ -11,8 +11,10 @@ const Question = ({
   authorImg,
   dispatch,
 }) => {
-  const { timestamp, optionOne, optionTwo } = question;
+  const history = useHistory();
   const params = useParams();
+
+  const { timestamp, optionOne, optionTwo } = question;
   const isOnPage = params.id === id;
   const answered =
     optionOne.votes.includes(authedUser) ||
@@ -20,7 +22,6 @@ const Question = ({
       ? true
       : false;
   const allVotes = optionOne.votes.length + optionTwo.votes.length;
-  let history = useHistory();
   const handleClick = () => {
     history.push(`/question/${id}`);
   };
@@ -125,8 +126,8 @@ const mapStateToProps = (
   { id }
 ) => {
   const question = questions[id];
-  const authorName = users[question.author].name;
-  const authorImg = users[question.author].avatarURL;
+  const authorName = questions[id] && users[question.author].name;
+  const authorImg = questions[id] && users[question.author].avatarURL;
   return { id, question, authedUser, authorName, authorImg };
 };
 
