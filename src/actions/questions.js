@@ -1,7 +1,6 @@
 import { hideLoading, showLoading } from "react-redux-loading";
 import { _saveQuestion } from "../_DATA";
-export const GET_QUESTIONS = "GET_QUESTIONS";
-export const ADD_QUESTION = "ADD_QUESTION";
+import { ADD_QUESTION, GET_QUESTIONS } from "./types";
 
 export function getQuestions(payload) {
   return {

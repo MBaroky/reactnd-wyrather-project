@@ -1,0 +1,5 @@
+export const GET_USERS = "GET_USERS";
+export const GET_QUESTIONS = "GET_QUESTIONS";
+export const SET_AUTHED = "SET_AUTHED";
+export const ADD_QUESTION = "ADD_QUESTION";
+export const SAVE_QUESTION_ANSWER = "SAVE_QUESTION_ANSWER";

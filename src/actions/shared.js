@@ -4,8 +4,7 @@ import { _getUsers } from "../_DATA";
 import { getQuestions } from "./questions";
 import { getUsers } from "./users";
 import { showLoading, hideLoading } from "react-redux-loading";
-
-export const SAVE_QUESTION_ANSWER = "SAVE_QUESTION_ANSWER";
+import { SAVE_QUESTION_ANSWER } from "./types";
 
 function saveQuestionAnswer(payload) {
   return {

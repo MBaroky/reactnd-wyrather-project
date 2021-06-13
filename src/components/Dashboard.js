@@ -26,7 +26,7 @@ export const Dashboard = ({ authedUser, qIds, answered }) => {
                 setfilter(e.target.name);
               }}
               className={`nav-link ${
-                filter === "unanswered" && "active"
+                filter && filter === "unanswered" ? "active" : ""
               } ${
                 answered.length === qIds.length && "text-secondary"
               }`}
@@ -37,17 +37,16 @@ export const Dashboard = ({ authedUser, qIds, answered }) => {
               name='answered'
               onClick={e => setfilter(e.target.name)}
               className={`nav-link ${
-                filter === "answered" && "active"
+                filter && filter === "answered" ? "active" : ""
               }`}>
               Answered
             </button>
           </ul>
         </div>
         <ul id='questions-wrapper' className='p-4 list-unstyled'>
-          {}
           {qIds
             .filter(qId =>
-              filter === "unanswered"
+              filter && filter === "unanswered"
                 ? !answered.includes(qId)
                 : answered.includes(qId)
             )

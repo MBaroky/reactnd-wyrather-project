@@ -1,4 +1,4 @@
-export const SET_AUTHED = "SET_AUTHED";
+import { SET_AUTHED } from "./types";
 
 export function setAuthed(userId) {
   return {

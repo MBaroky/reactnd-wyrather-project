@@ -43,7 +43,7 @@ function App({ authed, loading, dispatch }) {
             <Route exact path='/'>
               <Dashboard />
             </Route>
-            <Route path='/question/:id'>
+            <Route path='/questions/:id'>
               <QuestionPage />
             </Route>
             <Route path='/add'>

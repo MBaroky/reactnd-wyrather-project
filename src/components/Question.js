@@ -23,7 +23,7 @@ const Question = ({
       : false;
   const allVotes = optionOne.votes.length + optionTwo.votes.length;
   const handleClick = () => {
-    history.push(`/question/${id}`);
+    history.push(`/questions/${id}`);
   };
   const dateFormatter = stamp => {
     const date = new Date(stamp);

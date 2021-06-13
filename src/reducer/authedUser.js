@@ -1,4 +1,4 @@
-import { SET_AUTHED } from "../actions/authedUser";
+import { SET_AUTHED } from "../actions/types";
 
 export function authedUser(state = null, action) {
   if (action.type === SET_AUTHED) {

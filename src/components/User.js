@@ -21,7 +21,7 @@ const User = ({
     <Fragment>
       <div
         className={`btn btn-outline-primary w-100 card shadow ${
-          navUser && "text-white bg-dark"
+          navUser ? "text-white bg-dark" : ""
         }
       ${userId === authedUser && "bg-danger text-light"}
       `}
@@ -46,7 +46,7 @@ const User = ({
             <div className='col text-lg-start text center'>
               <h3
                 className={`d-inline font-weight-normal ${
-                  navUser && "fs-5"
+                  navUser ? "fs-5" : ""
                 }`}>
                 {name}
               </h3>
@@ -69,7 +69,8 @@ const User = ({
                         ? "btn-dark text-end py-1"
                         : "btn-outline-dark text-center"
                     }`}>
-                    <h4 className={navUser && "d-inline px-2 fs-6"}>
+                    <h4
+                      className={navUser ? "d-inline px-2 fs-6" : ""}>
                       {questions.length}
                     </h4>
                     <span className='badge rounded-pill bg-secondary font-weight-light'>
@@ -84,7 +85,8 @@ const User = ({
                         ? "btn-dark text-end py-1"
                         : "btn-outline-dark text-center"
                     }`}>
-                    <h4 className={navUser && "d-inline px-2 fs-6"}>
+                    <h4
+                      className={navUser ? "d-inline px-2 fs-6" : ""}>
                       {Object.keys(answers).length}
                     </h4>
                     <span className='badge rounded-pill bg-secondary font-weight-light'>

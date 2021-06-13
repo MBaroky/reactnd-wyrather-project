@@ -69,7 +69,10 @@ export const NewQuestion = ({ dispatch }) => {
         <button
           className='btn btn-danger form-control'
           type='submit'
-          disabled={valueOne === "" || valueTwo === ""}>
+          disabled={
+            valueOne.trim().length === 0 ||
+            valueTwo.trim().length === 0
+          }>
           Submit
         </button>
       </form>

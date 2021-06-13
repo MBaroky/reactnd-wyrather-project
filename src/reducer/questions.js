@@ -1,5 +1,8 @@
-import { ADD_QUESTION, GET_QUESTIONS } from "../actions/questions";
-import { SAVE_QUESTION_ANSWER } from "../actions/shared";
+import {
+  ADD_QUESTION,
+  GET_QUESTIONS,
+  SAVE_QUESTION_ANSWER,
+} from "../actions/types";
 
 export function questions(state = {}, action) {
   switch (action.type) {

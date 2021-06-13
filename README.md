@@ -1,3 +1,8 @@
+# Description
+
+A 'Would Your Rather' game application created using React and Redux
+as a project for Udacity Front End Advanced Track.
+
 # Instructions
 
 ## Getting started

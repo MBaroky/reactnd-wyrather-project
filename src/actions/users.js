@@ -1,4 +1,4 @@
-export const GET_USERS = "GET_USERS";
+import { GET_USERS } from "./types";
 
 export function getUsers(payload) {
   return {
